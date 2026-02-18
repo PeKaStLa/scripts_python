@@ -29,8 +29,7 @@ def walk():
 		counter+=1
 		print(counter)
 		if counter >= 250: break  # one-line if to break
-		old, step=pp
-		#bit = random.randint(0, 1)
+		old_row, old_col = pp[0], pp[1]
 		bit = 1 if random.random() < 0.7 else 0
 		print("Bit:",bit)
 		if bit == 1:
@@ -53,11 +52,11 @@ def walk():
 			if bittt == 0 and pp[0] != 0:
 				pp[0]-=1
 				oldwaysign='^'
-		a, b = pp
-		grid[a][b] = 'P'        
-		grid[old][step] = oldwaysign
+		if oldwaysign != '':
+	            grid[old_row][old_col] = oldwaysign # Leave an arrow at the OLD spot
+        	    grid[pp[0]][pp[1]] = 'P' # Place P at the NEW spot
 		print("PlayerP:", pp)
-		print("\033[H\033[J", end='')  # moves cursor to top and clears screen
+		print("\033[H\033[J", end='') #move cursor top and clear
 		prgr()
 		time.sleep(0.4)
 
